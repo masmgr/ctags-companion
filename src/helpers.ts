@@ -1,16 +1,16 @@
-const vscode = require("vscode");
+import * as vscode from "vscode";
 
-const { EXTENSION_ID } = require("./constants");
+import { EXTENSION_ID } from "./constants";
 
-function determineScope(document) {
+function determineScope(document: any) {
     return vscode.workspace.workspaceFolders.find(scope => document.uri.fsPath.includes(scope.uri.fsPath));
 }
 
-function getConfiguration(scope) {
+function getConfiguration(scope: vscode.Uri): vscode.WorkspaceConfiguration {
     return vscode.workspace.getConfiguration(EXTENSION_ID, scope);
 }
 
-function toSymbolKind(kind) {
+function toSymbolKind(kind: any): vscode.SymbolKind {
     switch (kind) {
         case "class": return vscode.SymbolKind.Class;
         case "function": return vscode.SymbolKind.Function;
@@ -19,4 +19,4 @@ function toSymbolKind(kind) {
     }
 }
 
-module.exports = { determineScope, getConfiguration, toSymbolKind };
+export { determineScope, getConfiguration, toSymbolKind };

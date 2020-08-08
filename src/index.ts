@@ -1,11 +1,11 @@
-const fs = require('fs');
-const path = require('path');
-const readline = require('readline');
-const vscode = require('vscode');
+import * as fs from 'fs';
+import * as path from 'path';
+import * as readline from 'readline';
+import * as vscode from 'vscode';
 
-const { getConfiguration } = require("./helpers");
+import { getConfiguration } from "./helpers";
 
-async function getIndexForScope(stash, scope) {
+async function getIndexForScope(stash: any, scope: any) {
     const indexes = stash.context.workspaceState.get("indexes");
     const path = scope.uri.fsPath;
     const isScopeIndexed = indexes && indexes.hasOwnProperty(path);
@@ -13,11 +13,11 @@ async function getIndexForScope(stash, scope) {
     return stash.context.workspaceState.get("indexes")[path];
 }
 
-async function reindexAll(stash) {
+async function reindexAll(stash: any) {
     await Promise.all(vscode.workspace.workspaceFolders.map(scope => reindexScope(stash, scope)));
 }
 
-function reindexScope(stash, scope) {
+function reindexScope(stash: any, scope: any) {
     const tagsPath = path.join(scope.uri.fsPath, getConfiguration(scope).get("path"));
 
     if (!fs.existsSync(tagsPath)) {
@@ -70,4 +70,4 @@ function reindexScope(stash, scope) {
     });
 }
 
-module.exports = { getIndexForScope, reindexAll, reindexScope };
+export { getIndexForScope, reindexAll, reindexScope };

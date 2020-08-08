@@ -1,21 +1,24 @@
-const vscode = require('vscode');
+import * as vscode from 'vscode';
 
-const { CtagsDefinitionProvider } = require("./providers/ctags_definition_provider");
-const { CtagsDocumentSymbolProvider } = require("./providers/ctags_document_symbol_provider");
-const { CtagsWorkspaceSymbolProvider } = require("./providers/ctags_workspace_symbol_provider");
-const { EXTENSION_ID, EXTENSION_NAME, TASK_NAME } = require("./constants");
-const { getConfiguration } = require("./helpers");
-const { reindexAll, reindexScope } = require("./index");
-const { runTests } = require("./tests");
+import { CtagsDefinitionProvider } from "./providers/ctags_definition_provider";
+import { CtagsDocumentSymbolProvider } from "./providers/ctags_document_symbol_provider";
+import { CtagsWorkspaceSymbolProvider } from "./providers/ctags_workspace_symbol_provider";
+import { EXTENSION_ID, EXTENSION_NAME, TASK_NAME } from "./constants";
+import { getConfiguration } from "./helpers";
+import { reindexAll, reindexScope } from "./index";
+import { runTests } from "./tests";
 
 class Stash {
-    constructor(context) {
+    context: any;
+    statusBarItem: any;
+
+    constructor(context: any) {
         this.context = context;
         this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
     }
 }
 
-function activate(context) {
+function activate(context:any) {
     const stash = new Stash(context);
 
     if (process.env.CTAGS_COMPANION_TEST) runTests(stash);
@@ -63,7 +66,7 @@ function activate(context) {
                     task.presentationOptions.reveal = false;
                     return [task];
                 },
-                resolveTask: (task) => task
+                resolveTask: (task: any) => task
             })
         ));
 
@@ -74,4 +77,4 @@ function activate(context) {
 }
 
 exports.activate = activate;
-module.exports = { activate };
+export { activate };

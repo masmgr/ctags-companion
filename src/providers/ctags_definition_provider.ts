@@ -1,14 +1,16 @@
-const vscode = require("vscode");
+import * as vscode from "vscode";
 
-const { determineScope } = require("../helpers");
-const { getIndexForScope } = require("../index");
+import { determineScope } from "../helpers";
+import { getIndexForScope } from "../index";
 
 class CtagsDefinitionProvider {
-    constructor(stash) {
+    stash: any;
+
+    constructor(stash: any) {
         this.stash = stash;
     }
 
-    async provideDefinition(document, position) {
+    async provideDefinition(document: any, position: any) {
         const symbol = document.getText(document.getWordRangeAtPosition(position));
         const scope = determineScope(document);
         const { symbolIndex } = await getIndexForScope(this.stash, scope);
@@ -25,4 +27,4 @@ class CtagsDefinitionProvider {
     }
 }
 
-module.exports = { CtagsDefinitionProvider };
+export { CtagsDefinitionProvider };

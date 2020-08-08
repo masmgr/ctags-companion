@@ -1,14 +1,16 @@
-const vscode = require("vscode");
+import * as vscode from "vscode";
 
-const { toSymbolKind } = require("../helpers");
-const { getIndexForScope } = require("../index");
+import { toSymbolKind } from "../helpers";
+import { getIndexForScope } from "../index";
 
 class CtagsWorkspaceSymbolProvider {
-    constructor(stash) {
+    stash: any;
+    
+    constructor(stash: any) {
         this.stash = stash;
     }
 
-    async provideWorkspaceSymbols(query) {
+    async provideWorkspaceSymbols(query: any) {
         if (!query) return;
 
         const indexes = await Promise.all(
@@ -36,4 +38,4 @@ class CtagsWorkspaceSymbolProvider {
     }
 }
 
-module.exports = { CtagsWorkspaceSymbolProvider };
+export { CtagsWorkspaceSymbolProvider };

@@ -1,10 +1,10 @@
-const path = require('path');
-const vscode = require("vscode");
+import * as path from 'path';
+import * as vscode from "vscode";
 
-const { CtagsDefinitionProvider } = require("./providers/ctags_definition_provider");
-const { CtagsDocumentSymbolProvider } = require("./providers/ctags_document_symbol_provider");
-const { CtagsWorkspaceSymbolProvider } = require("./providers/ctags_workspace_symbol_provider");
-const { reindexAll } = require("./index");
+import { CtagsDefinitionProvider } from "./providers/ctags_definition_provider";
+import { CtagsDocumentSymbolProvider } from "./providers/ctags_document_symbol_provider";
+import { CtagsWorkspaceSymbolProvider } from "./providers/ctags_workspace_symbol_provider";
+import { reindexAll } from "./index";
 
 async function runTests(stash) {
     console.log("Running tests...");
@@ -114,6 +114,4 @@ function assert(condition) {
     }
 }
 
-module.exports = {
-    runTests
-};
+export { runTests };

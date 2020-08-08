@@ -1,14 +1,16 @@
-const vscode = require("vscode");
+import * as vscode from "vscode";
 
-const { determineScope, toSymbolKind } = require("../helpers");
-const { getIndexForScope } = require("../index");
+import { determineScope, toSymbolKind } from "../helpers";
+import { getIndexForScope } from "../index";
 
 class CtagsDocumentSymbolProvider {
-    constructor(stash) {
+    stash:any;
+
+    constructor(stash: any) {
         this.stash = stash;
     }
 
-    async provideDocumentSymbols(document) {
+    async provideDocumentSymbols(document: any) {
         const relativePath = vscode.workspace.asRelativePath(document.uri, false);
         const scope = determineScope(document);
         const { documentIndex } = await getIndexForScope(this.stash, scope);
@@ -30,4 +32,4 @@ class CtagsDocumentSymbolProvider {
     }
 }
 
-module.exports = { CtagsDocumentSymbolProvider };
+export { CtagsDocumentSymbolProvider };
