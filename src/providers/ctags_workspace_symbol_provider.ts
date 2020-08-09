@@ -5,7 +5,7 @@ import { getIndexForScope } from "../index";
 
 class CtagsWorkspaceSymbolProvider {
     stash: any;
-    
+
     constructor(stash: any) {
         this.stash = stash;
     }

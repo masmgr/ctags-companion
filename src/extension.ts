@@ -18,7 +18,7 @@ class Stash {
     }
 }
 
-function activate(context:any) {
+function activate(context: any) {
     const stash = new Stash(context);
 
     if (process.env.CTAGS_COMPANION_TEST) runTests(stash);

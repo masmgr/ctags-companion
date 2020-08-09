@@ -4,7 +4,7 @@ import { determineScope, toSymbolKind } from "../helpers";
 import { getIndexForScope } from "../index";
 
 class CtagsDocumentSymbolProvider {
-    stash:any;
+    stash: any;
 
     constructor(stash: any) {
         this.stash = stash;

@@ -7,10 +7,10 @@ import { getConfiguration } from "./helpers";
 
 async function getIndexForScope(stash: any, scope: any) {
     const indexes = stash.context.workspaceState.get("indexes");
-    const path = scope.uri.fsPath;
-    const isScopeIndexed = indexes && indexes.hasOwnProperty(path);
+    const fspath = scope.uri.fsPath;
+    const isScopeIndexed = indexes && indexes.hasOwnProperty(fspath);
     if (!isScopeIndexed) await reindexScope(stash, scope);
-    return stash.context.workspaceState.get("indexes")[path];
+    return stash.context.workspaceState.get("indexes")[fspath];
 }
 
 async function reindexAll(stash: any) {
